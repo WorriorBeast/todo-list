@@ -1,0 +1,66 @@
+:root {
+   font-size: 16px;
+   --light-gray: #f6f6f6;
+   --scrollbar-color: #cecece;
+   --sidebar-width: max(19vw, 200px);
+}
+
+html {
+   height: 100%;
+   scrollbar-color: var(--scrollbar-color) transparent;
+}
+
+body {
+   margin: 0;
+}
+
+#sidebar {
+   background-color: var(--light-gray);
+   width: var(--sidebar-width);
+   box-sizing: border-box;
+   padding-left: 20px;
+   overflow: auto;
+   position: sticky;
+   top: 0;
+   height: 100vh;
+   display: inline-block;
+   vertical-align: top;
+   scrollbar-color: var(--scrollbar-color) var(--light-gray);
+}
+
+.page-header {
+   margin-top: 10px;
+}
+
+.personal-project-header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.add-icon-button {
+   margin-right: max(2vw, 15px);
+   border: none;
+   width: fit-content;
+   padding: 0;
+   background: none;
+   cursor: pointer;
+}
+
+.add-icon {
+   height: 25px;
+   flex: 1;
+   fill: #06b6d4;
+}
+
+.project-list {
+   padding: 0;
+}
+
+#content {
+   height: fit-content;
+   display: inline-block;
+   min-height: 100vh;
+   width: calc(98.5vw - var(--sidebar-width));
+   min-width: 500px;
+}
