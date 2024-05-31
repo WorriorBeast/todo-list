@@ -1,5 +1,5 @@
 import { default as SideBarProjectTab } from "./sidebar-project-tab";
-import { Form, Header, Description, Checklist, Notes, Submit } from "./project-form";
+import { Form, Header, Description, Checklist, Notes, Submit, Priority } from "./project-form";
 
 const createProjectInstances = [
    new SideBarProjectTab(),
@@ -8,6 +8,7 @@ const createProjectInstances = [
    new Description(),
    new Checklist(),
    new Notes(),
+   new Priority,
    new Submit()
 ];
 
