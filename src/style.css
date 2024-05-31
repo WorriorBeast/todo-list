@@ -116,3 +116,150 @@ img[src$=".svg"]:hover {
    width: calc(98.5vw - var(--sidebar-width));
    min-width: 500px;
 }
+
+#create-project {
+   line-height: 1.6;
+}
+
+.name-container {
+   margin: 10px 0 0 20px;
+}
+
+input,
+#description {
+   font-size: 1rem;
+   border: 0.5px solid black;
+}
+
+#project-name {
+   font-size: 2rem;
+}
+
+#project-name,
+#due-date {
+   padding: 0;
+   border: none;
+}
+
+.due-date-container {
+   margin-left: 20px;
+}
+
+.description-container {
+   margin: 50px 0 0 20px;
+}
+
+label[for="description"] {
+   display: block;
+   border-bottom: 1.5px solid springgreen
+}
+
+#description {
+   display: block;
+   line-height: 1.6;
+   padding: 0;
+   min-width: 160px;
+   width: calc(calc(98.5vw - var(--sidebar-width)) - 50px);
+}
+
+fieldset {
+   border: none;
+   margin: 50px 0 0 20px;
+   padding: 0;
+}
+
+.checklist-fieldset {
+   display: flex;
+   flex-direction: column;
+   row-gap: 20px;
+}
+
+legend,
+label[for="description"] {
+   font-size: 1.5rem;
+   margin-bottom: 15px;
+   width: -webkit-fill-available;
+   margin-right: 30px;
+}
+
+#checklist {
+   border-bottom: 1.5px solid coral;
+}
+
+#notes {
+   border-bottom: 1.5px solid #0ea5e9;
+}
+
+.checklist-container {
+   display: flex;
+}
+
+.checklist-fieldset input,
+.notes-fieldset input {
+   width: 25vw;
+   min-width: 200px;
+   padding: 3px 3px;
+   margin-right: 30px;
+}
+
+.list-delete-btn {
+   background-color: white;
+   border: none;
+   padding: 0;
+}
+
+#content img[src$=".svg"] {
+   cursor: pointer;
+}
+
+.add-list-item-container {
+   display: flex;
+   align-items: center;
+}
+
+.add-checklist-button,
+.add-note-button {
+   height: 25px;
+   width: 25px;
+   background-image: url(icons/plus.svg);
+   background-repeat: no-repeat;
+   background-color: transparent;
+   border: none;
+   padding: 0;
+   margin: 10px 0 0 16px;
+   cursor: pointer;
+}
+
+.add-checklist-item-text {
+   display: inline-block;
+   margin-top: 10px;
+   margin-left: 5px;
+}
+
+.priority-fieldset > label {
+   margin-right: 15px;
+   font-size: 1.1rem;
+}
+
+#priority {
+   border-bottom: 1.5px solid magenta;
+}
+
+input[type="radio"] {
+   cursor: pointer;
+}
+
+.align-submit-btn {
+   display: flex;
+   justify-content: flex-end;
+}
+
+button[type="submit"] {
+   font-size: 1.1rem;
+   background-color: #c8fffb;
+   margin: 40px 90px 40px 0;
+   border-radius: 20px;
+   padding: 5px 12px;
+   cursor: pointer;
+   border-style: none;
+}
