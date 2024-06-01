@@ -1,5 +1,6 @@
 import { default as attributeIterator } from './attribute-iterator.js';
 import { default as addChecklistItem } from './add-checklist-item.js';
+import { default as addNoteItem } from './add-note.js';
 import deleteIcon from './icons/delete.svg';
 
 class Form {
@@ -301,6 +302,7 @@ class Notes {
 
       iconBtn.setAttribute('type', 'button');
       iconBtn.classList.add('add-note-button');
+      iconBtn.addEventListener('click', addNoteItem);
 
       addItemContainer.appendChild(iconBtn);
 
