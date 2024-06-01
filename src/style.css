@@ -168,7 +168,8 @@ fieldset {
    padding: 0;
 }
 
-.checklist-fieldset {
+.checklist-fieldset,
+.notes-fieldset {
    display: flex;
    flex-direction: column;
    row-gap: 20px;
@@ -190,7 +191,8 @@ label[for="description"] {
    border-bottom: 1.5px solid #0ea5e9;
 }
 
-.checklist-container {
+.checklist-container,
+.note-container {
    display: flex;
 }
 
