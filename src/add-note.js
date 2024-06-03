@@ -1,4 +1,5 @@
 import { default as attributeIterator } from './attribute-iterator';
+import { default as removeItem } from './remove-item.js';
 import deleteIcon from './icons/delete.svg'
 
 let noteNum = 2;
@@ -48,6 +49,7 @@ function appendRemoveChecklistBtn() {
    const img = document.createElement('img');
    const checklistContainer = document.querySelector('.note-container:last-child');
 
+   deleteButton.addEventListener('click', removeItem);
    deleteButton.setAttribute('type', 'button');
    deleteButton.classList.add('list-delete-btn');
    checklistContainer.appendChild(deleteButton);

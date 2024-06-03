@@ -1,6 +1,7 @@
 import { default as attributeIterator } from './attribute-iterator.js';
 import { default as addChecklistItem } from './add-checklist-item.js';
 import { default as addNoteItem } from './add-note.js';
+import { default as removeItem } from './remove-item.js';
 import deleteIcon from './icons/delete.svg';
 
 class Form {
@@ -201,6 +202,7 @@ class Checklist {
       const img = document.createElement('img');
       const checklistContainer = document.querySelector('.checklist-container');
 
+      deleteButton.addEventListener('click', removeItem);
       deleteButton.setAttribute('type', 'button');
       deleteButton.classList.add('list-delete-btn');
       checklistContainer.appendChild(deleteButton);
@@ -282,6 +284,7 @@ class Notes {
       const img = document.createElement('img');
       const checklistContainer = document.querySelector('.note-container');
 
+      deleteButton.addEventListener('click', removeItem);
       deleteButton.setAttribute('type', 'button');
       deleteButton.classList.add('list-delete-btn');
       checklistContainer.appendChild(deleteButton);
