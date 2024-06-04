@@ -1,4 +1,5 @@
 import deleteIcon from './icons/delete.svg';
+import { default as deleteProject } from './delete-project.js';
 
 export default class SideBarProjectTab {
    appendItem() {
@@ -45,6 +46,7 @@ export default class SideBarProjectTab {
       img.setAttribute('width', '25px');
       img.setAttribute('alt', 'Trash can icon');
 
+      deleteBtn.addEventListener('click', deleteProject);
       deleteBtn.appendChild(img);
 
       deleteBtn.classList.add('sidebar-delete-btn');
