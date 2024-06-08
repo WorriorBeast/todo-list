@@ -82,7 +82,7 @@ class Header {
       const inputAttributes = {
          firstAt: {
             attribute: 'type',
-            value: 'text'
+            value: 'tel'
          },
          secondAt: {
             attribute: 'name',
@@ -165,7 +165,7 @@ class Checklist {
       const inputAttributes = {
          firstAt: {
             attribute: 'type',
-            value: `checklist-1`
+            value: `text`
          },
          secondAt: {
             attribute: 'name',
