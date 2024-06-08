@@ -2,6 +2,7 @@ import { default as attributeIterator } from './attribute-iterator.js';
 import { default as addChecklistItem } from './add-checklist-item.js';
 import { default as addNoteItem } from './add-note.js';
 import { default as removeItem } from './remove-item.js';
+import { default as getForm } from './get-form.js';
 import deleteIcon from './icons/delete.svg';
 
 class Form {
@@ -395,6 +396,7 @@ class Submit {
       form.appendChild(div);
 
       submitBtn.textContent = 'Submit';
+      submitBtn.addEventListener('click', getForm);
       submitBtn.setAttribute('type', 'submit');
 
       div.appendChild(submitBtn);
