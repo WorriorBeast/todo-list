@@ -99,6 +99,18 @@ class Header {
          fifthAt: {
             attribute: 'required',
             value: ''
+         },
+         sixthAt: {
+            attribute: 'pattern',
+            value: '(0[1-9]|1[1,2])\\/(0[1-9]|[12][0-9]|3[01])'
+         },
+         seventhAt: {
+            attribute: 'minlength',
+            value: '5'
+         },
+         eighthAt: {
+            attribute: 'maxlength',
+            value: '5'
          }
       };
 
