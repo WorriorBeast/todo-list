@@ -354,6 +354,10 @@ class Priority {
          fourthAt: {
             attribute: 'value',
             value: 'yes'
+         },
+         fifthAt: {
+            attribute: 'checked',
+            value: ''
          }
       };
 
