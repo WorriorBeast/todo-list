@@ -370,3 +370,26 @@ input[type="checkbox"] {
    height: 16px;
    padding-left: 5px;
 }
+
+form #project-name,
+form #due-date,
+form [for="due-date"],
+form [for="description"],
+legend,
+#content .project-name,
+#content .project-due-date,
+#content .description-header,
+.checklist-header,
+.note-header {
+   font-family: Georgia;
+}
+
+textarea,
+.checklist-container > input,
+.note-container > input,
+.priority-fieldset label,
+#content .description-text,
+.list,
+.note-item {
+   font-family: Arial;
+}
