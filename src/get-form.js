@@ -1,5 +1,7 @@
 import { default as checkDueDateFormat } from './check-due-date-format';
-import { Header, Description, Checklist, Notes } from './main-content';
+import { Header, Description, Checklist, Notes, Priority } from './main-content';
+import { createProject } from './create-project';
+import { default as finalizeTab } from './finalize-tab.js';
 
 export default function getForm(e) {
 	e.preventDefault();
@@ -17,10 +19,13 @@ export default function getForm(e) {
 	let checklistItems = [];
 	let noteItems = [];
 
-	let test = new Header(name, dueDate);
-	let test2 = new Description(description);
-	let test3 = new Checklist(checklistItems);
-	let test4 = new Notes(noteItems);
+	const finalizeProject = [
+		new Header(name, dueDate),
+		new Description(description),
+		new Checklist(checklistItems),
+		new Notes(noteItems),
+		new Priority(priority)
+	];
 
 	if (checkDueDateFormat(dueDate)) {
 		for (let i = 0; i < checklist.length; i++) {
@@ -31,18 +36,10 @@ export default function getForm(e) {
 			noteItems.push(notes[i].value);
 		}
 
-		console.log({name, dueDate, description, checklistItems, noteItems, priority});
-
 		content.removeChild(form);
 
-		test.appendName();
-		test.appendDueDate();
-
-		test2.appendDescription();
-
-		test3.appendChecklist();
-
-		test4.appendNotes();
+		createProject(finalizeProject);
+		finalizeTab(name, dueDate);
 
 	} else {
 		return;
