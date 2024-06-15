@@ -4,6 +4,7 @@ import { default as addNoteItem } from './add-note.js';
 import { default as removeItem } from './remove-item.js';
 import { default as getForm } from './get-form.js';
 import deleteIcon from './icons/delete.svg';
+import { updateName, updateDueDate, addForwardSlash } from './update-tab-live.js';
 
 class Form {
    appendForm() {
@@ -68,6 +69,8 @@ class Header {
       label.setAttribute('for', 'project-name');
       name.appendChild(label);
 
+      name.addEventListener('keydown', updateName);
+
       attributeIterator(inputAttributes, name, input);
 
       input.focus();
@@ -122,6 +125,9 @@ class Header {
 
       dateContainer.appendChild(dateLabel);
       
+      inputDate.addEventListener('keydown', updateDueDate);
+      inputDate.addEventListener('keyup', addForwardSlash);
+
       attributeIterator(inputAttributes, dateContainer, inputDate);
    }
 }
