@@ -27,6 +27,16 @@ export default function getForm(e) {
 		new Priority(priority)
 	];
 
+	let trimInput = () => {
+		for (let i = 0; i < checklistItems.length; i++) {
+			checklistItems[i] = checklistItems[i].trim();
+		}
+
+		for (let i = 0; i < noteItems.length; i++) {
+			noteItems[i] = noteItems[i].trim();
+		}
+	};
+
 	if (checkDueDateFormat(dueDate)) {
 		for (let i = 0; i < checklist.length; i++) {
 			checklistItems.push(checklist[i].value);
@@ -38,6 +48,7 @@ export default function getForm(e) {
 
 		content.removeChild(form);
 
+		trimInput();
 		createProject(finalizeProject);
 		finalizeTab(name, dueDate);
 

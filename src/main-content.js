@@ -78,8 +78,6 @@ class Checklist {
 		let count = 1;
 
 		for (let i = 0; i < this.checklistItems.length; i++) {
-			this.checklistItems[i] = this.checklistItems[i].trim();
-
 			if (this.checklistItems[i] !== '') {
 				const listItem = document.createElement('div');
 				const input = document.createElement('input');
@@ -136,8 +134,6 @@ class Notes {
 		noteContainer.appendChild(list);
 
 		for (let i = 0; i < this.noteItems.length; i++) {
-			this.noteItems[i] = this.noteItems[i].trim();
-			
 			if (this.noteItems[i] !== '') {
 				const note = document.createElement('li');
 
