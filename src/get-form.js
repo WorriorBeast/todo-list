@@ -2,6 +2,7 @@ import { default as checkDueDateFormat } from './check-due-date-format';
 import { Header, Description, Checklist, Notes, Priority } from './main-content';
 import { createProject } from './create-project';
 import { default as finalizeTab } from './finalize-tab.js';
+import { default as saveProject } from './save-project-to-local-storage.js';
 
 export default function getForm(e) {
 	e.preventDefault();
@@ -51,6 +52,7 @@ export default function getForm(e) {
 		trimInput();
 		createProject(finalizeProject);
 		finalizeTab(name, dueDate);
+		saveProject(name, dueDate, description, checklistItems, noteItems, priority);
 
 	} else {
 		return;
