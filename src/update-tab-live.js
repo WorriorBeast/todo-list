@@ -8,8 +8,8 @@ let updateName = (e) => {
 
       tabName.textContent = updatedName;
 
-      if (projectName.length == 1) {
-         tabName.textContent = 'Project Name';
+      if (projectName.length == 1 || projectName.length == 0) {
+         tabName.textContent = 'New Project';
       }
 
    } else if (checkForWhiteSpaceAndModifierKeys(key)) {
