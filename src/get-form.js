@@ -1,8 +1,9 @@
 import { default as checkDueDateFormat } from './check-due-date-format';
-import { Header, Description, Checklist, Notes, Priority } from './main-content';
+import { Header, Description, Checklist, Notes } from './main-content';
 import { createProject } from './create-project';
 import { default as finalizeTab } from './finalize-tab.js';
 import { default as saveProject } from './save-project-to-local-storage.js';
+import { default as checkPriority } from './check-priority.js';
 
 export default function getForm(e) {
 	e.preventDefault();
@@ -24,8 +25,7 @@ export default function getForm(e) {
 		new Header(name, dueDate),
 		new Description(description),
 		new Checklist(checklistItems),
-		new Notes(noteItems),
-		new Priority(priority)
+		new Notes(noteItems)
 	];
 
 	let trimInput = () => {
@@ -52,7 +52,11 @@ export default function getForm(e) {
 		trimInput();
 		createProject(finalizeProject);
 		finalizeTab(name, dueDate);
-		saveProject(name, dueDate, description, checklistItems, noteItems, priority);
+		saveProject(name, dueDate, description, checklistItems, noteItems);
+
+		const lastSidebarTab = document.querySelector('.project-item:last-child');
+
+		checkPriority(priority, lastSidebarTab);
 
 	} else {
 		return;
