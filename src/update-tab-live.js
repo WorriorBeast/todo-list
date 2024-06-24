@@ -1,5 +1,5 @@
-let updateName = (e) => {
-   const tabName = document.querySelector('h3.project-name');
+let updateName = (e, tab) => {
+   let tabName = tab.children[0];
    let key = e.key;
    let projectName = e.target.value;
 
@@ -23,8 +23,8 @@ let updateName = (e) => {
    }
 };
 
-let updateDueDate = (e) => {
-   const tabDueDate = document.querySelector('.project-item p.project-due-date');
+let updateDueDate = (e, tab) => {
+   let tabDueDate = tab.children[1];
    let key = e.key;
    let date = e.target.value;
    let dateArray = date.slice('');
@@ -45,8 +45,8 @@ let updateDueDate = (e) => {
    }
 };
 
-let addForwardSlash = (e) => {
-   const tabDueDate = document.querySelector('.project-item p.project-due-date');
+let addForwardSlash = (e, tab) => {
+   let tabDueDate = tab.children[1];
    let date = e.target.value;
    let dateArray = date.slice('');
 

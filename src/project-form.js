@@ -31,7 +31,7 @@ class Form {
 }
 
 class Header {
-   appendProjectHeader() {
+   appendProjectHeader(tabNode) {
       const label = document.createElement('label');
       const input = document.createElement('input');
       const nameContainer = document.createElement('div');
@@ -69,14 +69,16 @@ class Header {
       label.setAttribute('for', 'project-name');
       name.appendChild(label);
 
-      name.addEventListener('keydown', updateName);
+      name.addEventListener('keydown', function(e) {
+         updateName(e, tabNode);
+      });
 
       attributeIterator(inputAttributes, name, input);
 
       input.focus();
    }
 
-   appendDueDate() {
+   appendDueDate(tabNode) {
       const form = document.getElementById('create-project');
       const dateContainer = document.createElement('div');
       const dateLabel = document.createElement('label');
@@ -125,8 +127,12 @@ class Header {
 
       dateContainer.appendChild(dateLabel);
       
-      inputDate.addEventListener('keydown', updateDueDate);
-      inputDate.addEventListener('keyup', addForwardSlash);
+      inputDate.addEventListener('keydown', function(e) {
+         updateDueDate(e, tabNode);
+      });
+      inputDate.addEventListener('keyup', function(e) {
+         addForwardSlash(e, tabNode);
+      });
 
       attributeIterator(inputAttributes, dateContainer, inputDate);
    }

@@ -12,9 +12,17 @@ addProjectBtn.addEventListener('click', function() {
 
    createProject(createTab);
 
+   const newSidebarTab = document.querySelector('.project-item:last-child');
+
+   const form = new Form();
+   const header = new Header();
+
+   form.appendForm();
+   header.appendProjectHeader(newSidebarTab);
+   header.appendDueDate(newSidebarTab);
+
+
    const createForm = [
-      new Form(),
-      new Header(),
       new Description(),
       new Checklist(),
       new Notes(),
