@@ -2,6 +2,11 @@ import deleteIcon from './icons/delete.svg';
 import { default as deleteProject } from './delete-project.js';
 
 export default class SideBarProjectTab {
+   constructor(name, dueDate) {
+      this.name = name;
+      this.dueDate = dueDate;
+   }
+
    appendItem() {
       const li = document.createElement('li');
       const projectList = document.querySelector('.project-list');
@@ -17,7 +22,7 @@ export default class SideBarProjectTab {
       const title = document.createElement('h3');
       const projectItem = document.querySelector('.project-item:last-child');
  
-      title.textContent = 'New Project';
+      title.textContent = this.name;
       projectItem.appendChild(title);
  
       const projectName = document.querySelector('.project-item:last-child h3');
@@ -29,7 +34,7 @@ export default class SideBarProjectTab {
       const para = document.createElement('p');
       const projectItem = document.querySelector('.project-item:last-child');
  
-      para.textContent = 'Due: ';
+      para.textContent = `Due: ${this.dueDate}`;
       projectItem.appendChild(para);
  
       const projectDueDate = document.querySelector('.project-item:last-child p');
