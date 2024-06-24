@@ -55,6 +55,8 @@ export default function getForm(e) {
 		saveProject(name, dueDate, description, checklistItems, noteItems);
 
 		const lastSidebarTab = document.querySelector('.project-item:last-child');
+		
+		finalizeTab(name, dueDate, lastSidebarTab);
 
 		checkPriority(priority, lastSidebarTab);
 
