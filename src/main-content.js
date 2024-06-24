@@ -1,5 +1,4 @@
 import { default as attributeIterator } from './attribute-iterator.js';
-import clockIcon from './icons/clock-alert-outline.svg';
 
 const content = document.getElementById('content');
 
@@ -145,25 +144,4 @@ class Notes {
 	}
 }
 
-class Priority {
-	constructor(priority) {
-		this.priority = priority;
-	}
-
-	append() {
-		if (this.priority == 'yes') {
-			const names = document.querySelectorAll('.project-name');
-			const dueDate = document.querySelectorAll('.project-due-date');
-			const clock = document.createElement('img');
-
-			[...names].map(name => name.classList.add('priority'));
-			[...dueDate].map(date => date.classList.add('priority'));
-
-			clock.classList.add('clock');
-			clock.setAttribute('src', clockIcon);
-			dueDate[0].appendChild(clock);
-		}
-	}
-}
-
-export { Checklist, Description, Header, Notes, Priority };
+export { Header, Description, Checklist, Notes };
