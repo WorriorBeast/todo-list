@@ -1,12 +1,15 @@
 import { Header, Description, Checklist, Notes } from './main-content.js';
 import { createProject } from './create-project.js';
 import { default as checkPriority } from './check-priority.js';
+import { default as removeCurrentContent } from './remove-current-content.js';
 
 export default function(e) {
    let savedProjects = JSON.parse(localStorage.getItem('projects'));
    let tab = e.target.closest('.project-item');
    let name = tab.children[0].textContent;
    let dueDate = tab.children[1].textContent.split(' ');
+
+   removeCurrentContent();
 
    for (let project in savedProjects) {
 		let savedName = savedProjects[project].name;

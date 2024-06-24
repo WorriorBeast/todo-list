@@ -4,10 +4,13 @@ import { default as SideBarProjectTab } from "./sidebar-project-tab";
 import { Form, Header, Description, Checklist, Notes, Submit, Priority } from "./project-form";
 import { default as loadTabs } from './load-tabs.js';
 import { default as selectTab } from './select-tab.js';
+import { default as removeCurrentContent } from './remove-current-content.js';
 
 const addProjectBtn = document.querySelector('.add-icon-button');
 
 addProjectBtn.addEventListener('click', function() {
+   removeCurrentContent();
+
    const createTab = [
       new SideBarProjectTab('New Project', ''),
    ];
