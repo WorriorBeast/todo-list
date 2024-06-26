@@ -51,13 +51,11 @@ export default function getForm(e) {
 
 		trimInput();
 		createProject(finalizeProject);
-		finalizeTab(name, dueDate);
-		saveProject(name, dueDate, description, checklistItems, noteItems);
+		saveProject(name, dueDate, description, checklistItems, noteItems, priority);
 
 		const lastSidebarTab = document.querySelector('.project-item:last-child');
 		
 		finalizeTab(name, dueDate, lastSidebarTab);
-
 		checkPriority(priority, lastSidebarTab);
 
 	} else {
