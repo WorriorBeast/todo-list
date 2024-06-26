@@ -5,6 +5,7 @@ import { Form, Header, Description, Checklist, Notes, Submit, Priority } from ".
 import { default as loadTabs } from './load-tabs.js';
 import { default as selectTab } from './select-tab.js';
 import { default as removeCurrentContent } from './remove-current-content.js';
+import { default as sortTabs } from './sort-tabs.js';
 
 const addProjectBtn = document.querySelector('.add-icon-button');
 
@@ -43,3 +44,5 @@ window.addEventListener('load', loadTabs);
 const tabList = document.querySelector('.project-list');
 
 tabList.addEventListener('click', selectTab);
+
+window.addEventListener('load', sortTabs);

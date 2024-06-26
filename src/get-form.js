@@ -4,6 +4,7 @@ import { createProject } from './create-project';
 import { default as finalizeTab } from './finalize-tab.js';
 import { default as saveProject } from './save-project-to-local-storage.js';
 import { default as checkPriority } from './check-priority.js';
+import { default as sortTabs } from './sort-tabs.js';
 
 export default function getForm(e) {
 	e.preventDefault();
@@ -57,6 +58,7 @@ export default function getForm(e) {
 		
 		finalizeTab(name, dueDate, lastSidebarTab);
 		checkPriority(priority, lastSidebarTab);
+		sortTabs();
 
 	} else {
 		return;
