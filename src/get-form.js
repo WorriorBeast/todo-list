@@ -5,11 +5,12 @@ import { default as finalizeTab } from './finalize-tab.js';
 import { default as saveProject } from './save-project-to-local-storage.js';
 import { default as checkPriority } from './check-priority.js';
 import { default as sortTabs } from './sort-tabs.js';
+import { default as capitalizeName } from './capitalize-name.js';
 
 export default function getForm(e) {
 	e.preventDefault();
 
-	const name = document.getElementById('project-name').value;
+	let name = document.getElementById('project-name').value;
 	const dueDate = document.getElementById('due-date').value;
 	const description = document.getElementById('description').value;
 	const checklist = document.querySelectorAll('.checklist-container input');
@@ -21,6 +22,8 @@ export default function getForm(e) {
 
 	let checklistItems = [];
 	let noteItems = [];
+
+	name = capitalizeName(name);
 
 	const finalizeProject = [
 		new Header(name, dueDate),
