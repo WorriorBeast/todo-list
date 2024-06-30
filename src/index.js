@@ -46,3 +46,9 @@ const tabList = document.querySelector('.project-list');
 tabList.addEventListener('click', selectTab);
 
 window.addEventListener('load', sortTabs);
+
+window.addEventListener('load', () => {
+   const allTabs = document.getElementsByClassName('project-item');
+
+   allTabs[0].click();
+});
