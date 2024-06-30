@@ -393,3 +393,8 @@ textarea,
 .note-item {
    font-family: Arial;
 }
+
+.click-tab,
+.click-tab:hover {
+   background-color: #a4fff9;
+}
