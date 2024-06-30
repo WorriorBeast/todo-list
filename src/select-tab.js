@@ -24,6 +24,10 @@ export default function(e) {
 				new Notes(savedProjects[project].notes)
 			];
 
+			const recentlyViewedTab = tab.innerHTML;
+
+			localStorage.setItem('recentlyViewedTab', JSON.stringify(recentlyViewedTab));
+
 			createProject(finalizeProject);
 			checkPriority(savedProjects[project].priority);
 			changeTabColor(tab);
