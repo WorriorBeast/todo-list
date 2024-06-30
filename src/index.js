@@ -6,7 +6,6 @@ import { default as loadTabs } from './load-tabs.js';
 import { default as selectTab } from './select-tab.js';
 import { default as removeCurrentContent } from './remove-current-content.js';
 import { default as sortTabs } from './sort-tabs.js';
-import { default as changeTabColor } from './change-tab-color.js';
 
 const addProjectBtn = document.querySelector('.add-icon-button');
 
@@ -53,9 +52,6 @@ window.addEventListener('load', () => {
    const recentlyViewedTab = JSON.parse(localStorage.getItem('recentlyViewedTab'));
 
    [...allTabs].map(tab => {
-      if (tab.innerHTML == recentlyViewedTab) {
-         tab.click();
-         changeTabColor(tab);
-      }
+      if (tab.innerHTML == recentlyViewedTab) tab.click();
    });
 });
