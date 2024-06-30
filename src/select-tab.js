@@ -2,6 +2,7 @@ import { Header, Description, Checklist, Notes } from './main-content.js';
 import { createProject } from './create-project.js';
 import { default as checkPriority } from './check-priority.js';
 import { default as removeCurrentContent } from './remove-current-content.js';
+import { default as changeTabColor } from './change-tab-color.js';
 
 export default function(e) {
    let savedProjects = JSON.parse(localStorage.getItem('projects'));
@@ -25,6 +26,7 @@ export default function(e) {
 
 			createProject(finalizeProject);
 			checkPriority(savedProjects[project].priority);
+			changeTabColor(tab);
 		}
 	}
 };
