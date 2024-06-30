@@ -50,7 +50,12 @@ window.addEventListener('load', sortTabs);
 
 window.addEventListener('load', () => {
    const allTabs = document.getElementsByClassName('project-item');
+   const recentlyViewedTab = JSON.parse(localStorage.getItem('recentlyViewedTab'));
 
-   allTabs[0].click();
-   changeTabColor(allTabs[0]);
+   [...allTabs].map(tab => {
+      if (tab.innerHTML == recentlyViewedTab) {
+         tab.click();
+         changeTabColor(tab);
+      }
+   });
 });
