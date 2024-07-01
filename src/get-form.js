@@ -63,6 +63,8 @@ export default function getForm(e) {
 		checkPriority(priority, lastSidebarTab);
 		sortTabs();
 
+		localStorage.setItem('recentlyViewedTab', JSON.stringify(lastSidebarTab.innerHTML));
+
 	} else {
 		return;
 	}
