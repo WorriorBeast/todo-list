@@ -6,6 +6,7 @@ import { default as loadTabs } from './load-tabs.js';
 import { default as selectTab } from './select-tab.js';
 import { default as removeCurrentContent } from './remove-current-content.js';
 import { default as sortTabs } from './sort-tabs.js';
+import { default as changeTabColor } from './change-tab-color.js';
 
 const addProjectBtn = document.querySelector('.add-icon-button');
 
@@ -37,6 +38,7 @@ addProjectBtn.addEventListener('click', function() {
    ];
 
    createProject(createForm);
+   changeTabColor(newSidebarTab);
 });
 
 window.addEventListener('load', loadTabs);
