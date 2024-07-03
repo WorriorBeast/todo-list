@@ -31,6 +31,11 @@ class Form {
 }
 
 class Header {
+   constructor(name, dueDate) {
+      this.name = name;
+      this.dueDate = dueDate;
+   }
+
    appendProjectHeader(tabNode) {
       const label = document.createElement('label');
       const input = document.createElement('input');
@@ -60,6 +65,7 @@ class Header {
          }
       };
 
+      input.value = this.name;
       nameContainer.classList.add('name-container');
 
       form.appendChild(nameContainer);
@@ -134,11 +140,17 @@ class Header {
          addForwardSlash(e, tabNode);
       });
 
+      inputDate.value = this.dueDate;
+
       attributeIterator(inputAttributes, dateContainer, inputDate);
    }
 }
 
 class Description {
+   constructor(description) {
+      this.description = description;
+   }
+
    appendDescription() {
       const form = document.getElementById('create-project');
       const descriptionContainer = document.createElement('div');
@@ -173,11 +185,17 @@ class Description {
 
       descriptionContainer.appendChild(label);
 
+      textArea.value = this.description;
+
       attributeIterator(textAreaAttributes, descriptionContainer, textArea);
    }
 }
 
 class Checklist {
+   constructor(checklist) {
+      this.checklist = checklist;
+   }
+
    appendChecklist() {
       const form = document.getElementById('create-project');
       const fieldSet = document.createElement('fieldset');
@@ -219,7 +237,13 @@ class Checklist {
       label.setAttribute('for', 'checklist-1');
       container.appendChild(label);
 
+      input.value = this.checklist[0];
+
       attributeIterator(inputAttributes, container, input);
+
+      for (let i = 1; i < this.checklist.length; i++) {
+         addChecklistItem(this.checklist[i]);
+      }
    }
 
    appendRemoveChecklistBtn() {
@@ -261,6 +285,10 @@ class Checklist {
 }
 
 class Notes {
+   constructor(notes) {
+      this.notes = notes;
+   }
+
    appendNotes() {
       const form = document.getElementById('create-project');
       const fieldSet = document.createElement('fieldset');
@@ -301,7 +329,13 @@ class Notes {
       label.setAttribute('for', 'note-1');
       container.appendChild(label);
 
+      input.value = this.notes[0];
+
       attributeIterator(inputAttributes, container, input);
+
+      for (let i = 1; i < this.notes.length; i++) {
+         addNoteItem(this.notes[i]);
+      }
    }
 
    appendRemoveNoteBtn() {
@@ -341,6 +375,10 @@ class Notes {
 }
 
 class Priority {
+   constructor(priority) {
+      this.priority = priority;
+   }
+
    appendAskIfPriority() {
       const form = document.getElementById('create-project');
       const fieldSet = document.createElement('fieldset');
@@ -366,10 +404,6 @@ class Priority {
          fourthAt: {
             attribute: 'value',
             value: 'yes'
-         },
-         fifthAt: {
-            attribute: 'checked',
-            value: ''
          }
       };
 
@@ -411,6 +445,9 @@ class Priority {
       noLabel.textContent = 'No';
       noLabel.setAttribute('for', 'no');
       fieldSet.appendChild(noLabel);
+
+      const checkedPriority = document.getElementById(`${this.priority}`);
+      checkedPriority.checked = true;
    }
 }
 

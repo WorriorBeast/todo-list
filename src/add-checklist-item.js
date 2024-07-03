@@ -4,7 +4,7 @@ import deleteIcon from './icons/delete.svg';
 
 let checklistNum = 2;
 
-export default function() {
+export default function(checklist) {
    const checklistFieldset = document.querySelector('.checklist-fieldset');
    const container = document.createElement('div');
    const label = document.createElement('label');
@@ -34,7 +34,9 @@ export default function() {
  
    label.setAttribute('for', `checklist-${checklistNum}`);
    container.appendChild(label);
- 
+
+   if (checklist.type !== 'click') input.value = checklist;
+
    attributeIterator(inputAttributes, container, input);
  
    input.focus();

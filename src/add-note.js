@@ -4,7 +4,7 @@ import deleteIcon from './icons/delete.svg'
 
 let noteNum = 2;
 
-export default function() {
+export default function(note) {
    const noteFieldSet = document.querySelector('.notes-fieldset');
    const container = document.createElement('div');
    const label = document.createElement('label');
@@ -34,6 +34,8 @@ export default function() {
 
    label.setAttribute('for', `note-${noteNum}`);
    container.appendChild(label);
+
+   if (note.type !== 'click') input.value = note;
 
    attributeIterator(inputAttributes, container, input);
 
