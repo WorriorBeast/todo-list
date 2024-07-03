@@ -7,38 +7,99 @@ import { default as selectTab } from './select-tab.js';
 import { default as removeCurrentContent } from './remove-current-content.js';
 import { default as sortTabs } from './sort-tabs.js';
 import { default as changeTabColor } from './change-tab-color.js';
+import { default as saveUnfinishedProject } from './save-unfinished-project.js';
 
 const addProjectBtn = document.querySelector('.add-icon-button');
 
 addProjectBtn.addEventListener('click', function() {
-   removeCurrentContent();
+   let newTab = document.querySelector('.new-tab');
+   let unfinishedProject = localStorage.getItem('unfinishedProject');
 
-   const createTab = [
-      new SideBarProjectTab('New Project', ''),
-   ];
+   if (!unfinishedProject && newTab == null) {
+      removeCurrentContent();
 
-   createProject(createTab);
+      const createTab = [
+         new SideBarProjectTab('New Project', ''),
+      ];
 
-   const newSidebarTab = document.querySelector('.project-item:last-child');
+      createProject(createTab);
 
-   const form = new Form();
-   const header = new Header();
+      const newSidebarTab = document.querySelector('.project-item:last-child');
 
-   form.appendForm();
-   header.appendProjectHeader(newSidebarTab);
-   header.appendDueDate(newSidebarTab);
+      newSidebarTab.classList.toggle('new-tab');
+
+      const form = new Form();
+      const header = new Header('', '');
+
+      form.appendForm();
+      header.appendProjectHeader(newSidebarTab);
+      header.appendDueDate(newSidebarTab);
 
 
-   const createForm = [
-      new Description(),
-      new Checklist(),
-      new Notes(),
-      new Priority(),
-      new Submit()
-   ];
+      const createForm = [
+         new Description(''),
+         new Checklist(['']),
+         new Notes(['']),
+         new Priority('yes'),
+         new Submit()
+      ];
 
-   createProject(createForm);
-   changeTabColor(newSidebarTab);
+      createProject(createForm);
+      changeTabColor(newSidebarTab);
+
+      const priorityFieldset = document.querySelector('.priority-fieldset');
+
+      window.addEventListener('keyup', saveUnfinishedProject);
+      priorityFieldset.addEventListener('click', saveUnfinishedProject);
+
+   } else if (unfinishedProject && newTab == null) {
+      removeCurrentContent();
+
+      let createTab;
+
+      unfinishedProject = JSON.parse(unfinishedProject);
+
+      if (unfinishedProject.name !== '') {
+         createTab = [
+            new SideBarProjectTab(unfinishedProject.name, unfinishedProject.dueDate),
+         ];
+
+      } else {
+         createTab = [
+            new SideBarProjectTab('New Project', unfinishedProject.dueDate),
+         ];
+      }
+
+      createProject(createTab);
+
+      const newSidebarTab = document.querySelector('.project-item:last-child');
+
+      newSidebarTab.classList.toggle('new-tab');
+
+      const form = new Form();
+      const header = new Header(unfinishedProject.name, unfinishedProject.dueDate);
+
+      form.appendForm();
+      header.appendProjectHeader(newSidebarTab);
+      header.appendDueDate(newSidebarTab);
+
+
+      const createForm = [
+         new Description(unfinishedProject.description),
+         new Checklist(unfinishedProject.checklist),
+         new Notes(unfinishedProject.notes),
+         new Priority(unfinishedProject.priority),
+         new Submit()
+      ];
+
+      createProject(createForm);
+      changeTabColor(newSidebarTab);
+
+      const priorityFieldset = document.querySelector('.priority-fieldset');
+
+      window.addEventListener('keyup', saveUnfinishedProject);
+      priorityFieldset.addEventListener('click', saveUnfinishedProject);
+   }
 });
 
 window.addEventListener('load', loadTabs);

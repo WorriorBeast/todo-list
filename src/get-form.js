@@ -6,6 +6,7 @@ import { default as saveProject } from './save-project-to-local-storage.js';
 import { default as checkPriority } from './check-priority.js';
 import { default as sortTabs } from './sort-tabs.js';
 import { default as capitalizeName } from './capitalize-name.js';
+import { default as saveUnfinishedProject } from './save-unfinished-project.js';
 
 export default function getForm(e) {
 	e.preventDefault();
@@ -63,7 +64,12 @@ export default function getForm(e) {
 		checkPriority(priority, lastSidebarTab);
 		sortTabs();
 
+		lastSidebarTab.classList.toggle('new-tab');
+
 		localStorage.setItem('recentlyViewedTab', JSON.stringify(lastSidebarTab.innerHTML));
+		localStorage.removeItem('unfinishedProject');
+
+      window.removeEventListener('keyup', saveUnfinishedProject);
 
 	} else {
 		return;
