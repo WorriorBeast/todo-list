@@ -2,7 +2,6 @@ import { default as removeCurrentContent } from './remove-current-content.js';
 
 export default function(e) {
 	e.stopPropagation();
-	removeCurrentContent();
 
 	const ul = document.querySelector('.project-list');
 	let currentProjectTab = this.closest('.project-item');
@@ -11,6 +10,11 @@ export default function(e) {
 	let currentDueDate = currentProjectTab.children[1].textContent.split(' ');
 
 	let savedProjects = JSON.parse(localStorage.getItem('projects'));
+	let recentlyViewedTab = JSON.parse(localStorage.getItem('recentlyViewedTab'));
+
+	if (recentlyViewedTab == currentProjectTab || currentProjectTab.classList.contains('new-tab')) {
+		removeCurrentContent();
+	}
 
 	for (let project in savedProjects) {
 		let savedName = savedProjects[project].name;
