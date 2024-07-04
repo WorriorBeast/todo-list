@@ -10,11 +10,23 @@ export default function(e) {
 	let currentDueDate = currentProjectTab.children[1].textContent.split(' ');
 
 	let savedProjects = JSON.parse(localStorage.getItem('projects'));
-	let recentlyViewedTab = JSON.parse(localStorage.getItem('recentlyViewedTab'));
 
-	if (recentlyViewedTab == currentProjectTab || currentProjectTab.classList.contains('new-tab')) {
+	if (currentProjectTab.classList.contains('click-tab')) {
+		const projectList = document.getElementsByClassName('project-item');
+
 		removeCurrentContent();
+
+		for (let i = 0; i < projectList.length; i++) {
+			if (i == projectList.length - 1 && projectList[i].innerHTML == currentProjectTab.innerHTML) {
+				projectList[i - 1].click();
+				
+			} else if (i !== projectList.length - 1 && projectList[i].innerHTML == currentProjectTab.innerHTML) {
+				projectList[i + 1].click();
+			}
+		}
 	}
+
+	ul.removeChild(currentProjectTab);
 
 	for (let project in savedProjects) {
 		let savedName = savedProjects[project].name;
@@ -26,6 +38,4 @@ export default function(e) {
 			localStorage.setItem('projects', JSON.stringify(projects));
 		}
 	}
-
-	ul.removeChild(currentProjectTab);
 };
