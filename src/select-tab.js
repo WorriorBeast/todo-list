@@ -40,7 +40,7 @@ export default function(e) {
 
 	let unfinishedProject = JSON.parse(localStorage.getItem('unfinishedProject'));
 
-	if (tab.closest('.project-item').classList.contains('new-tab') && localStorage.getItem('unfinishedProject')) {
+	if (tab.classList.contains('new-tab') && localStorage.getItem('unfinishedProject')) {
 		const form = new Form();
 		const header = new FormHeader(unfinishedProject.name, unfinishedProject.dueDate);
 
@@ -65,7 +65,7 @@ export default function(e) {
 		window.addEventListener('keyup', saveUnfinishedProject);
 		priorityFieldset.addEventListener('click', saveUnfinishedProject);
 
-	} else if (tab.closest('.project-item').classList.contains('new-tab') && !localStorage.getItem('unfinishedProject')) {
+	} else if (tab.classList.contains('new-tab') && !localStorage.getItem('unfinishedProject')) {
 		const form = new Form();
 		const header = new FormHeader('', '');
 
