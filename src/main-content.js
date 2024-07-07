@@ -2,6 +2,19 @@ import { default as attributeIterator } from './attribute-iterator.js';
 
 const content = document.getElementById('content');
 
+class Edit {
+	appendEditBtn() {
+		const editBtn = document.createElement('button');
+		const contentContainer = document.querySelector('#content');
+
+		editBtn.textContent = 'Edit';
+		editBtn.classList.toggle('edit');
+		editBtn.setAttribute('type', 'button');
+
+		contentContainer.appendChild(editBtn);
+	}
+}
+
 class Header {
 	constructor(projectName, dueDate) {
 		this.projectName = projectName;
@@ -144,4 +157,4 @@ class Notes {
 	}
 }
 
-export { Header, Description, Checklist, Notes };
+export { Edit, Header, Description, Checklist, Notes };
