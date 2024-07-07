@@ -1,4 +1,4 @@
-import { Header, Description, Checklist, Notes } from './main-content.js';
+import { Edit, Header, Description, Checklist, Notes } from './main-content.js';
 import { createProject } from './create-project.js';
 import { default as checkPriority } from './check-priority.js';
 import { default as removeCurrentContent } from './remove-current-content.js';
@@ -22,6 +22,7 @@ export default function(e) {
 
 		if (Object.is(savedName, name) && Object.is(savedDueDate, dueDate[1])) {
 			const finalizeProject = [
+				new Edit(),
 				new Header(savedProjects[project].name, savedProjects[project].dueDate),
 				new Description(savedProjects[project].description),
 				new Checklist(savedProjects[project].checklist),

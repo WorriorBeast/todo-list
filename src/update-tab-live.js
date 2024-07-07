@@ -31,11 +31,24 @@ let updateDueDate = (e, tab) => {
 
    if (key == 'Backspace') {
       let updatedDate = date.slice(0, -1);
+      let dateAndClock = tabDueDate.innerHTML.split('<');
 
-      tabDueDate.textContent = `Due: ${updatedDate}`;
+      if (tabDueDate.classList.contains('priority')) {
+         tabDueDate.innerHTML = `Due: ${updatedDate}<${dateAndClock[1]}`;
+
+      } else {
+         tabDueDate.textContent = `Due: ${updatedDate}`;
+      }
 
    } else if ((Number(key) || key == '0') && dateArray.length < 5) {
-      tabDueDate.textContent = `Due: ${date + key}`;
+      let dateAndClock = tabDueDate.innerHTML.split('<');
+
+      if (tabDueDate.classList.contains('priority')) {
+         tabDueDate.innerHTML = `Due: ${date + key}<${dateAndClock[1]}`;
+
+      } else {
+         tabDueDate.textContent = `Due: ${date + key}`;
+      }
 
    } else if (checkForWhiteSpaceAndModifierKeys(key)) {
       return;
@@ -52,11 +65,25 @@ let addForwardSlash = (e, tab) => {
 
    if (dateArray.length == 2 && e.key !== 'Backspace') {
       e.target.value = date + '/';
-      tabDueDate.textContent = `Due: ${date}/`;
+      let dateAndClock = tabDueDate.innerHTML.split('<');
+
+      if (tabDueDate.classList.contains('priority')) {
+         tabDueDate.innerHTML = `Due: ${date}<${dateAndClock[1]}`;
+
+      } else {
+         tabDueDate.textContent = `Due: ${date}/`;
+      }
       
    } else if (dateArray.length == 3 && e.key !== 'Backspace' && Number(e.key)) {
       e.target.value = dateArray[0] + dateArray[1] + '/' + dateArray[2];
-      tabDueDate.textContent = `Due: ${dateArray[0] + dateArray[1] + '/' + dateArray[2]}`;
+      let dateAndClock = tabDueDate.innerHTML.split('<');
+
+      if (tabDueDate.classList.contains('priority')) {
+         tabDueDate.innerHTML = `Due: ${dateArray[0] + dateArray[1] + '/' + dateArray[2]}<${dateAndClock[1]}`;
+
+      } else {
+         tabDueDate.textContent = `Due: ${dateArray[0] + dateArray[1] + '/' + dateArray[2]}`;
+      }
    }
 }
 

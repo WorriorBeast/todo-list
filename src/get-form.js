@@ -1,5 +1,5 @@
 import { default as checkDueDateFormat } from './check-due-date-format';
-import { Header, Description, Checklist, Notes } from './main-content';
+import { Edit, Header, Description, Checklist, Notes } from './main-content';
 import { createProject } from './create-project';
 import { default as finalizeTab } from './finalize-tab.js';
 import { default as saveProject } from './save-project-to-local-storage.js';
@@ -7,6 +7,7 @@ import { default as checkPriority } from './check-priority.js';
 import { default as sortTabs } from './sort-tabs.js';
 import { default as capitalizeName } from './capitalize-name.js';
 import { default as saveUnfinishedProject } from './save-unfinished-project.js';
+import { updateProject } from './edit-project.js';
 
 export default function getForm(e) {
 	e.preventDefault();
@@ -27,6 +28,7 @@ export default function getForm(e) {
 	name = capitalizeName(name);
 
 	const finalizeProject = [
+		new Edit(),
 		new Header(name, dueDate),
 		new Description(description),
 		new Checklist(checklistItems),
@@ -44,6 +46,8 @@ export default function getForm(e) {
 	};
 
 	if (checkDueDateFormat(dueDate)) {
+		let edited = false;
+
 		for (let i = 0; i < checklist.length; i++) {
 			checklistItems.push(checklist[i].value);
 		}
@@ -52,22 +56,33 @@ export default function getForm(e) {
 			noteItems.push(notes[i].value);
 		}
 
+		if (localStorage.getItem('projectToEdit')) {
+			updateProject(name, dueDate, description, checklistItems, noteItems, priority);
+			edited = true;
+		}
+
 		content.removeChild(form);
 
 		trimInput();
 		createProject(finalizeProject);
-		saveProject(name, dueDate, description, checklistItems, noteItems, priority);
 
-		const lastSidebarTab = document.querySelector('.project-item:last-child');
+		if (!localStorage.getItem('projectToEdit')) {
+			saveProject(name, dueDate, description, checklistItems, noteItems, priority);
+		}
+
+		const selectedTab = document.querySelector('.click-tab');
 		
-		finalizeTab(name, dueDate, lastSidebarTab);
-		checkPriority(priority, lastSidebarTab);
+		finalizeTab(name, dueDate, selectedTab);
+		checkPriority(priority, selectedTab);
 		sortTabs();
 
-		lastSidebarTab.classList.toggle('new-tab');
+		selectedTab.classList.remove('new-tab');
 
-		localStorage.setItem('recentlyViewedTab', JSON.stringify(lastSidebarTab.innerHTML));
-		localStorage.removeItem('unfinishedProject');
+		localStorage.setItem('recentlyViewedTab', JSON.stringify(selectedTab.innerHTML));
+
+		if (!edited) localStorage.removeItem('unfinishedProject');
+
+		localStorage.removeItem('projectToEdit');
 
       window.removeEventListener('keyup', saveUnfinishedProject);
 
