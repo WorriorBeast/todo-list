@@ -398,3 +398,19 @@ textarea,
 .click-tab:hover {
    background-color: #a4fff9;
 }
+
+.edit {
+   position: sticky;
+   top: 20px;
+   left: calc(100vw - max(100px, 5vw));
+   cursor: pointer;
+   background-color: #c8fffb;
+   border-radius: 20px;
+   padding: 5px 13px;
+   font-size: 1rem;
+   border: none;
+}
+
+.project-header {
+   margin-top: -15px;
+}
