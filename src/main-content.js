@@ -1,4 +1,5 @@
 import { default as attributeIterator } from './attribute-iterator.js';
+import { redisplayFormForEdit } from './edit-project.js';
 
 const content = document.getElementById('content');
 
@@ -10,6 +11,8 @@ class Edit {
 		editBtn.textContent = 'Edit';
 		editBtn.classList.toggle('edit');
 		editBtn.setAttribute('type', 'button');
+
+		editBtn.addEventListener('click', redisplayFormForEdit);
 
 		contentContainer.appendChild(editBtn);
 	}
