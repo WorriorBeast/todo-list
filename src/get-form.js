@@ -45,6 +45,11 @@ export default function getForm(e) {
 		}
 	};
 
+	let removeWhiteSpaceInput = () => {
+		checklistItems = checklistItems.filter(checklist => (checklist !== ''));
+		noteItems = noteItems.filter(note => (note !== ''));
+	};
+
 	if (checkDueDateFormat(dueDate)) {
 		let edited = false;
 
@@ -56,6 +61,9 @@ export default function getForm(e) {
 			noteItems.push(notes[i].value);
 		}
 
+		trimInput();
+		removeWhiteSpaceInput();
+
 		if (localStorage.getItem('projectToEdit')) {
 			updateProject(name, dueDate, description, checklistItems, noteItems, priority);
 			edited = true;
@@ -63,7 +71,6 @@ export default function getForm(e) {
 
 		content.removeChild(form);
 
-		trimInput();
 		createProject(finalizeProject);
 
 		if (!localStorage.getItem('projectToEdit')) {
