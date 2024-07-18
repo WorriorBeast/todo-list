@@ -237,12 +237,16 @@ class Checklist {
       label.setAttribute('for', 'checklist-1');
       container.appendChild(label);
 
-      input.value = this.checklist[0];
+      if (this.checklist['1'] !== undefined) input.value = this.checklist['1'].text;
 
       attributeIterator(inputAttributes, container, input);
 
-      for (let i = 1; i < this.checklist.length; i++) {
-         addChecklistItem(this.checklist[i]);
+      for (let checklistItem in this.checklist) {
+         let keys =  Object.keys(this.checklist);
+
+         if (checklistItem !== keys[0]) {
+            addChecklistItem(this.checklist[checklistItem].text);
+         }
       }
    }
 

@@ -38,7 +38,7 @@ addProjectBtn.addEventListener('click', function() {
 
       const createForm = [
          new Description(''),
-         new Checklist(['']),
+         new Checklist({}),
          new Notes(['']),
          new Priority('yes'),
          new Submit()

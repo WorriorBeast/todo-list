@@ -22,8 +22,9 @@ export default function getForm(e) {
 	const content = document.getElementById('content');
 	const form = document.getElementById('create-project');
 
-	let checklistItems = [];
+	let checklistItems = {};
 	let noteItems = [];
+	let checklistText = [];
 
 	name = capitalizeName(name);
 
@@ -36,8 +37,8 @@ export default function getForm(e) {
 	];
 
 	let trimInput = () => {
-		for (let i = 0; i < checklistItems.length; i++) {
-			checklistItems[i] = checklistItems[i].trim();
+		for (let i = 0; i < checklistText.length; i++) {
+			checklistText[i] = checklistText[i].trim();
 		}
 
 		for (let i = 0; i < noteItems.length; i++) {
@@ -46,15 +47,16 @@ export default function getForm(e) {
 	};
 
 	let removeWhiteSpaceInput = () => {
-		checklistItems = checklistItems.filter(checklist => (checklist !== ''));
+		checklistText = checklistText.filter(text => (text !== ''));
 		noteItems = noteItems.filter(note => (note !== ''));
 	};
 
 	if (checkDueDateFormat(dueDate)) {
 		let edited = false;
+		let projectToEdit = JSON.parse(localStorage.getItem('projectToEdit'));
 
 		for (let i = 0; i < checklist.length; i++) {
-			checklistItems.push(checklist[i].value);
+			checklistText.push(checklist[i].value);
 		}
 	
 		for (let i = 0; i < notes.length; i ++) {
@@ -63,6 +65,35 @@ export default function getForm(e) {
 
 		trimInput();
 		removeWhiteSpaceInput();
+
+		if (projectToEdit) {
+			let keys = Object.keys(projectToEdit.checklist);
+
+			for (let i = 0; i < checklistText.length; i++) {
+				if (i + 1 == keys[i]) {
+					checklistItems[i + 1] = {
+						text: checklistText[i],
+						isChecked: projectToEdit.checklist[keys[i]].isChecked
+					};
+
+				} else {
+					checklistItems[i + 1] = {
+						text: checklistText[i],
+						isChecked: false
+					};
+				}
+			}
+
+			edited =  true;
+
+		} else {
+			for (let i = 0; i < checklistText.length; i++) {
+				checklistItems[i + 1] = {
+					text: checklistText[i],
+					isChecked: false
+				};
+			}
+		}
 
 		if (localStorage.getItem('projectToEdit')) {
 			updateProject(name, dueDate, description, checklistItems, noteItems, priority);

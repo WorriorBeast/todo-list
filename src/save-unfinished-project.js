@@ -6,15 +6,23 @@ export default function() {
    const notes = document.querySelectorAll('.note-container input');
    const priority = document.querySelector('input[name="priority"]:checked').value;
 
-   let checklistItems = [];
+   let checklistItems = {};
    let noteItems = [];
+   let checklistText = [];
 
    for (let i = 0; i < checklist.length; i++) {
-      checklistItems.push(checklist[i].value);
+      checklistText.push(checklist[i].value);
    }
 
    for (let i = 0; i < notes.length; i ++) {
       noteItems.push(notes[i].value);
+   }
+
+   for (let i = 0; i < checklistText.length; i++) {
+      checklistItems[i + 1] = {
+         text: checklistText[i],
+         isChecked: false
+      };
    }
 
    let unfinishedProject = {

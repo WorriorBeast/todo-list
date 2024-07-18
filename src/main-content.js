@@ -1,5 +1,5 @@
 import { default as attributeIterator } from './attribute-iterator.js';
-import { redisplayFormForEdit } from './edit-project.js';
+import { redisplayFormForEdit, updateChecklist } from './edit-project.js';
 
 const content = document.getElementById('content');
 
@@ -87,13 +87,15 @@ class Checklist {
 		header.classList.add('checklist-header');
 		checklistContainer.appendChild(header);
 
+		listItemContainer.addEventListener('click', updateChecklist);
+
 		listItemContainer.classList.add('list');
 		checklistContainer.appendChild(listItemContainer);
 
 		let count = 1;
 
-		for (let i = 0; i < this.checklistItems.length; i++) {
-			if (this.checklistItems[i] !== '') {
+		for (let checklistItem in this.checklistItems) {
+			if (this.checklistItems[checklistItem].text !== '') {
 				const listItem = document.createElement('div');
 				const input = document.createElement('input');
 				const label = document.createElement('label')
@@ -116,9 +118,11 @@ class Checklist {
 				listItem.classList.add('checklist-item');
 				listItemContainer.appendChild(listItem);
 
+				input.checked = this.checklistItems[checklistItem].isChecked;
+
 				attributeIterator(inputAttributes, listItem, input);
 
-				label.textContent = this.checklistItems[i];
+				label.textContent = this.checklistItems[checklistItem].text;
 				label.setAttribute('for', `checklist-${count}`)
 				listItem.appendChild(label);
 
