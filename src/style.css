@@ -414,3 +414,9 @@ textarea,
 .project-header {
    margin-top: -15px;
 }
+
+.align-empty-state {
+   align-content: center;
+   text-align: center;
+   margin-top: -7vh;
+}
