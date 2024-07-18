@@ -12,8 +12,11 @@ import { default as saveUnfinishedProject } from './save-unfinished-project.js';
 const addProjectBtn = document.querySelector('.add-icon-button');
 
 addProjectBtn.addEventListener('click', function() {
+   const content = document.getElementById('content');
    let newTab = document.querySelector('.new-tab');
    let unfinishedProject = localStorage.getItem('unfinishedProject');
+
+   content.classList.remove('align-empty-state');
 
    if (!unfinishedProject && newTab == null) {
       removeCurrentContent();

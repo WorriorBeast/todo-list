@@ -1,4 +1,5 @@
 import { default as removeCurrentContent } from './remove-current-content.js';
+import { default as emptyState } from './empty-state.js';
 
 export default function(e) {
 	e.stopPropagation();
@@ -23,8 +24,8 @@ export default function(e) {
 			} else if (i !== projectList.length - 1 && projectList[i].innerHTML == currentProjectTab.innerHTML && projectList.length !== 1) {
 				projectList[i + 1].click();
 
-			} else if (i == 0 && projectList.length == 0) {
-				break;
+			} else if (i == 0 && projectList.length == 1) {
+				emptyState();
 			}
 		}
 	}
