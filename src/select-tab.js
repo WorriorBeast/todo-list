@@ -15,6 +15,7 @@ export default function(e) {
 
    removeCurrentContent();
 	window.removeEventListener('keyup', saveUnfinishedProject);
+	localStorage.removeItem('projectToEdit');
 
    for (let project in savedProjects) {
 		let savedName = savedProjects[project].name;
