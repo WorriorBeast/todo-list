@@ -68,4 +68,22 @@ let updateProject = (name, dueDate, description, checklist, notes, priority) => 
    }
 };
 
-export { redisplayFormForEdit, updateProject }
+let updateChecklist = (e) => {
+   const selectedTab = document.querySelector('.click-tab');
+   const name = selectedTab.children[0].textContent;
+   const dueDate = selectedTab.children[1].textContent.split(' ')[1];
+   let checklistNumber = e.target.id.split('-')[1];
+   let projects = JSON.parse(localStorage.getItem('projects'));
+
+   for (let project in projects) {
+      if (Object.is(projects[project].name, name) && Object.is(projects[project].dueDate, dueDate)) {
+         projects[project].checklist[checklistNumber].isChecked ? 
+         projects[project].checklist[checklistNumber].isChecked = false : 
+         projects[project].checklist[checklistNumber].isChecked = true;
+         
+         localStorage.setItem('projects', JSON.stringify(projects));
+      }
+   }
+};
+
+export { redisplayFormForEdit, updateProject, updateChecklist }
