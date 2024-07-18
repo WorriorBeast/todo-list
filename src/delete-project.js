@@ -15,13 +15,16 @@ export default function(e) {
 		const projectList = document.getElementsByClassName('project-item');
 
 		removeCurrentContent();
-
+		
 		for (let i = 0; i < projectList.length; i++) {
-			if (i == projectList.length - 1 && projectList[i].innerHTML == currentProjectTab.innerHTML) {
+			if (i == projectList.length - 1 && projectList[i].innerHTML == currentProjectTab.innerHTML && projectList.length !== 1) {
 				projectList[i - 1].click();
-				
-			} else if (i !== projectList.length - 1 && projectList[i].innerHTML == currentProjectTab.innerHTML) {
+
+			} else if (i !== projectList.length - 1 && projectList[i].innerHTML == currentProjectTab.innerHTML && projectList.length !== 1) {
 				projectList[i + 1].click();
+
+			} else if (i == 0 && projectList.length == 0) {
+				break;
 			}
 		}
 	}
